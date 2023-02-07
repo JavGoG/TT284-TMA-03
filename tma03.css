@@ -7,6 +7,7 @@
 main {
   /* Apply style rules to the diary container here? */
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 @media screen and (min-width: 320px) {
@@ -37,6 +38,7 @@ section {
 
 section.entry {
   display: grid !important;
+
   grid-auto-flow: column;
   /* (1)(b)(ii) Percent (%) is relative to the size of an element’s container */
   width: min(90%, 75rem);
@@ -110,6 +112,8 @@ section.button button {
   /* Make Add entry and Add photo buttons fill their container */
   width: 100%;
   height: 100%;
+  /*  */
+  display: inline;
   /* Do not add border to width (else it will be over 100%) */
   box-sizing: border-box;
 }
