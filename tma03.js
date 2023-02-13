@@ -71,6 +71,12 @@ function createDemoItems() {
     localStorage.setItem(key, item);
 }
 
+/*
+* (1)(c)(i)
+* 'disabled' property will avoid createDemoItems function for been executed
+* createDemoItems().disabled = true;
+*/
+
 /**
  * Add a section to the page containing the given element
  * @param key Key of item in local storage

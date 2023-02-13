@@ -7,38 +7,56 @@
 main {
   /* Apply style rules to the diary container here? */
   display: grid;
+  /* 1fr = 1/3rd or 33.333% of the available space (container size - elements)*/
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-@media screen and (min-width: 320px) {
-  /* CSS rules for screens of 320px or wider go here */
+/* This media queries override the above rule in 'main' for 'grid-template-columns' */
+@media screen and (max-width: 320px) {
+  /* CSS rules for screens of 320px or smaller go here */
+  /* It will create a just one column */
+  main {
+    grid-template-columns: 1fr;
+  }
 }
 
-@media screen and (min-width: 375px) {
-  /* CSS rules for screens M MOBILE of 375px or wider go here */
+@media screen and (max-width: 375px) {
+  /* CSS rules for screens M MOBILE of 375px or smaller go here */
 }
 
-@media screen and (min-width: 425px) {
-  /* CSS rules for screens L MOBILE of 425px or wider go here */
+@media screen and (max-width: 425px) {
+  /* CSS rules for screens L MOBILE of 425px or smaller go here */
+  main {
+    grid-template-columns: 1fr;
+  }
 }
 
-@media screen and (min-width: 768px) {
-  /* CSS rules for screens TABLET of 768px or wider go here */
+@media screen and (max-width: 768px) {
+  /* CSS rules for screens TABLET of 768px or smaller go here */
 }
 
 @media screen and (min-width: 1024px) {
   /* CSS rules for screens LAPTOP of 1024px or wider go here */
+  /* The 'auto' value will center the grid to the viewport */
+  body {
+    max-width: 90rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 section {
   /* To make sizing easier, include borders or padding in width */
   box-sizing: border-box;
+  padding: auto;
   /* Set a limit on entry widths? */
+  /* (1)(b)(ii) Percent (%) is relative to the size of an element’s container */
+  width: min(90%, 75rem);
+  grid-gap: 1rem;
 }
 
 section.entry {
-  display: grid !important;
-
+  display: grid;
   grid-auto-flow: column;
   /* (1)(b)(ii) Percent (%) is relative to the size of an element’s container */
   width: min(90%, 75rem);
