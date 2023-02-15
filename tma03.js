@@ -74,8 +74,9 @@ function createDemoItems() {
 /*
 * (1)(c)(i)
 * 'disabled' property will avoid createDemoItems function for been executed
-* createDemoItems().disabled = true;
 */
+// createDemoItems().disabled = true;
+
 
 /**
  * Add a section to the page containing the given element
@@ -176,24 +177,23 @@ function addTextEntry(key, initialText, isNewEntry) {
         // Save the text entry:
         // ...get the textarea element's current value
         //    (getting HTML input values is in Block 2 Part 2 Section 6)
-        text = textareaElement.value;
+        var text = textareaElement.value;
         // ...make a text item using the value
         //    (demonstrated elsewhere in this file)
-        var data = text;
-        var item = makeItem("text", data);
+        var text = { key: key, text: text };
+
+
         // ...store the item in local storage using the given key
         //    (local storage is in Block 3 Part 5)
         // Tip: this is easier to test if you complete Task 2 before Task 1
-        localStorage.setItem(itemKey, item);
-        console.log("saved item", itemKey, "=", textareaElement.value);
-
+        localStorage.setItem(key, JSON.stringify(text));
     }
 
     // TODO: Q1(c)(iii) Task 2 of 2
     // Connect the saveEntry event listener to the textarea element 'change' event
     // (demonstrated elsewhere in this file)
     // Tip: this is easier to test if you complete Task 2 before Task 1
-    text.addEventListener("change", () => { saveEntry });
+    textareaElement.addEventListener('change', saveEntry);
 }
 
 /**
@@ -350,7 +350,6 @@ function initialize() {
 
     // Create some demonstration items
     createDemoItems();
-
     // Update the page to reflect stored items
     showEntries();
 }
