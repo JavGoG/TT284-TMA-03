@@ -33,7 +33,7 @@ function createDemoItems() {
     key = "diary" + "1536771000001";
 
     // Store the item in local storage
-    localStorage.setItem(key, item);
+
 
     // Make a demo text item
     data =
@@ -252,16 +252,25 @@ function processFile(inputChangeEvent) {
         // Add a new image entry, using the current timestamp to make a key
         var key = "diary" + Date.now();
         addImageEntry(key, data);
-
+        // #####################################################
+        // #####################################################
         // TODO: Q1(c)(iv) Task 1 of 2
         // Make an image item using the given data URL
         // (demonstrated elsewhere in this file)
         // Store the item in local storage using the given key
         // (demonstrated elsewhere in this file)
+        // var image = { key: key, data: data };
+
+        // TODO: Task 1 of 2
+        // Make an image item using the given data URL
+        var item = makeItem("image", data);
+
+        // Store the item in local storage using the given key
+        localStorage.setItem(key, item);
     }
 
     // Add a 'dummy' image entry
-    addImage(window.DUMMY_DATA_URL);
+    // addImage(window.DUMMY_DATA_URL);
 
     // TODO: Q1(c)(iv) Task 2 of 2
     // Complete this function to read a file when it is selected:
@@ -269,6 +278,14 @@ function processFile(inputChangeEvent) {
     // (imgElement and messageElement do not exist in this app so remove that code)
     // ...then call addImage using the data URL you obtain
     // ...and comment out line above using window.DUMMY_DATA_URL
+
+    var file = inputChangeEvent.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var data = event.target.result;
+        addImage(data);
+    }
+    reader.readAsDataURL(file);
 
     // Clear the file selection (allows selecting the same file again)
     inputChangeEvent.target.value = "";
